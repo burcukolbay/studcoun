@@ -1,0 +1,1 @@
+Üye alanı, index sayfası

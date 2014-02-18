@@ -1,0 +1,1 @@
+Yönetici alanı index sayfası
