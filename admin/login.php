@@ -9,12 +9,12 @@ if ( isset($_POST['btnLogin']) ){//form gonderilmişse
     
     $loginResult = $Admin->login($_POST['email'], $_POST['password']);//true veya false döner
     
-    if ( $loginResult == true ){
+    if ( $loginResult[0] == true ){
         //sayfa yönlendirmesi yapılıyor
         header( 'Location: index.php' );
         exit; //yönlendirmeden sonra exiti unutmayın
     }else{
-        $errorMessage = 'Email or password is wrong!';
+        $errorMessage = $loginResult[1];
     }
     
 }

@@ -14,9 +14,7 @@ class Admin extends ModelBase{
     
     public $email, $password;
     
-    public function login($email,$password) {
-        $loginResult = false;
-        
+    public function login($email,$password) {        
         $sql = 'SELECT * '
                 . "FROM admin "
                 . "WHERE email='$email'";
@@ -25,7 +23,7 @@ class Admin extends ModelBase{
         $queryResult = $this->db->get_row( $sql );
         //email var mı?
         if ( is_null($queryResult) ){
-            return $loginResult;
+            return array(false, 'Email is wrong!');
         }
         
         $sql = ' SELECT * FROM admin'
@@ -33,12 +31,12 @@ class Admin extends ModelBase{
         $queryResult = $this->db->get_row( $sql );
         //bir önceki sqlde yer alan şifre doğru mu?
         if ( is_null($queryResult) ){
-            return $loginResult;
+            return array(false, 'Password is wrong!');
         }
         
         $loginResult = true;
         $_SESSION['login'] = 1;
-        return $loginResult;
+        return array(true);
     }
     
     public function isLogined(){
