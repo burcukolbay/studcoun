@@ -18,8 +18,8 @@ class ModelBase {
         // at the same time - db_user / db_password / db_name / db_host
         // db_host can "host:port" notation if you need to specify a custom port
         $this->db = new ezSQL_mysqli('root','','studcoun','localhost');
-        $sonuc = $this->db->get_var( 'SELECT count(*) FROM admin;' );
-
-        $this->db->debug();
+        $this->db->query('SET NAMES utf8');
+        $this->db->query('SET CHARACTER SET utf8');
+        $this->db->query("SET COLLATION_CONNECTION = 'utf8_general_ci'");
    }
 }

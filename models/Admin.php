@@ -1,4 +1,5 @@
 <?php
+    include_once 'ModelBase.php';
 /**
  * Description of Admin
  *
@@ -14,8 +15,7 @@ class Admin extends ModelBase{
     public $email, $password;
     
     public function login($email,$password) {
-        var_dump($this->db);
-        exit;
+        $loginResult = false;
         
         $sql = 'SELECT * '
                 . "FROM admin "
@@ -23,8 +23,30 @@ class Admin extends ModelBase{
 
         //veritabanında $sql değişkeni içindeki sorgu çalıştırıldı
         $queryResult = $this->db->get_row( $sql );
-        var_dump($queryResult);
+        //email var mı?
+        if ( is_null($queryResult) ){
+            return $loginResult;
+        }
         
+        $sql = ' SELECT * FROM admin'
+                . " WHERE email='$email' AND password='$password'";
+        $queryResult = $this->db->get_row( $sql );
+        //bir önceki sqlde yer alan şifre doğru mu?
+        if ( is_null($queryResult) ){
+            return $loginResult;
+        }
+        
+        $loginResult = true;
+        $_SESSION['login'] = 1;
+        return $loginResult;
+    }
+    
+    public function isLogined(){
+        if ( isset($_SESSION['login']) && $_SESSION['login'] == 1 ){
+            return true;
+        }else{
+            return false;
+        }
     }
     
 }
