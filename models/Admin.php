@@ -39,6 +39,15 @@ class Admin extends ModelBase{
         return array(true);
     }
     
+    public function logout() {
+        unset($_SESSION['login']);
+        return true;
+    }
+    
+    /**
+     * Oturum açılıp açılmadığını kontrol eden method.
+     * @return boolean
+     */
     public function isLogined(){
         if ( isset($_SESSION['login']) && $_SESSION['login'] == 1 ){
             return true;

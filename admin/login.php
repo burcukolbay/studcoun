@@ -1,17 +1,19 @@
 <?php
 session_start();
-
+include_once '../config/main.php';
 $errorMessage = NULL;
 if ( isset($_POST['btnLogin']) ){//form gonderilmişse
-    include_once '../models/Admin.php';
+    include_once BASE_PATH . '/models/Admin.php';
     
     $Admin = new Admin();
     
     $loginResult = $Admin->login($_POST['email'], $_POST['password']);//true veya false döner
     
+    //eğer login bilgileri doğruysa ilgili admin sayfasına yönlendir
     if ( $loginResult[0] == true ){
         //sayfa yönlendirmesi yapılıyor
-        header( 'Location: index.php' );
+        $redirectPage = ( isset($_GET['ref']) ) ? $_GET['ref'] : 'index.php';
+        header( 'Location: ' . $redirectPage );
         exit; //yönlendirmeden sonra exiti unutmayın
     }else{
         $errorMessage = $loginResult[1];
