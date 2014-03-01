@@ -20,8 +20,18 @@ if ( $Admin->isLogined() == false ){
 </head>
 <body>
 <?php include_once './inc/body_top.php'; ?>
-    
-    
-Yönetici anasafasına hoşgeldiniz..
+
+    <div id="container">
+        <div id="content">
+
+            <?php 
+            include_once '../models/News.php';
+            echo 'Toplam haber sayısı: ' . News::getTotalNews(); 
+            echo '<br>';
+            ?>
+
+        </div>
+    </div>
+
 </body>
 </html>

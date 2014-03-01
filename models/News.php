@@ -41,7 +41,7 @@ class News extends ModelBase{
         return $result;
     }
 
-        public function getNews($number=NULL) {
+    public function getNews($number=NULL) {
         $limit = is_null($number) ?  NULL : " LIMIT 0, $number";
         
         $sql = 'SELECT * FROM news';
@@ -51,4 +51,11 @@ class News extends ModelBase{
         $result = $this->db->get_results( $sql );
         return $result;
     }
+    
+    public static function getTotalNews(){
+        $sql = 'SELECT count(*) FROM news;';
+        
+        return self::db()->get_var($sql);
+    }
+    
 }
