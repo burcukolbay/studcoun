@@ -11,6 +11,7 @@ if ( $Admin->isLogined() == false ){
     exit;
 }
 
+//form gönderildi mi?
 if ( isset($_POST['btnSave']) ){
     include_once BASE_PATH . '/models/News.php';
     $News = new News();
@@ -38,27 +39,40 @@ if ( isset($_POST['btnSave']) ){
         <div id="content">
             <h1>Add News</h1>
             <div>
-        <form method="POST">
-            <div>
-                <?php
-                //form gönderilmişse mesajı yazdır
-                if ( isset($_POST['btnSave']) ){
-                    echo $message;
-                }
-                ?>
+                <form method="POST" enctype="multipart/form-data">
+                    <div>
+                        <?php
+                        //form gönderilmişse mesajı yazdır
+                        if ( isset($_POST['btnSave']) ){
+                            echo $message;
+                        }
+                        ?>
+                    </div>
+                    Title: 
+                    <br><input type="text" name="title" value="" />
+                    <br>
+                    Summary: 
+                    <br><textarea name="summary" rows="4" cols="20"></textarea>
+                    <br>
+                    Content: 
+                    <br><textarea name="content" rows="4" cols="20"></textarea>
+                    <br>
+                    Image 1:
+                    <br><input type="file" name="image1" />
+                    <br>
+
+                    Image 2:
+                    <br><input type="file" name="image2" />
+                    <br>
+
+                    Image 3:
+                    <br><input type="file" name="image3" />
+                    <br>
+
+                    <br>
+                    <input type="submit" value="Save" name="btnSave" />
+                </form>
             </div>
-            Title: 
-            <br><input type="text" name="title" value="" />
-            <br>
-            Summary: 
-            <br><textarea name="summary" rows="4" cols="20"></textarea>
-            <br>
-            Content: 
-            <br><textarea name="content" rows="4" cols="20"></textarea>
-            <br>
-            <input type="submit" value="Save" name="btnSave" />
-        </form>
-    </div>
         </div>
 
         <div id="submenu">
