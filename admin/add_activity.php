@@ -38,7 +38,7 @@ if ( isset($_POST['btnSave']) ){
         <div id="content">
             <h1>Add Activity</h1>
             <div>
-        <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
             <div>
                 <?php
                 //form gönderilmişse mesajı yazdır
@@ -62,7 +62,11 @@ if ( isset($_POST['btnSave']) ){
             Activity Time: 
             <br>
             <input type="text" name="activity_time" value="" />
+            <br> 
+            Image:
+            <br><input type="file" name="image1" />
             <br>            
+            
             <br>    
             <input type="submit" value="Save" name="btnSave" />
         </form>
