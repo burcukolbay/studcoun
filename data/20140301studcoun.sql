@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 01 Mar 2014, 09:16:43
+-- Üretim Zamanı: 01 Mar 2014, 11:17:42
 -- Sunucu sürümü: 5.6.11
 -- PHP Sürümü: 5.5.3
 
@@ -54,7 +54,15 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `time` datetime NOT NULL COMMENT 'Etkinlikler icin tablo.',
   `activity_time` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Tablo döküm verisi `activity`
+--
+
+INSERT INTO `activity` (`id`, `title`, `content`, `quota`, `photo`, `place`, `time`, `activity_time`) VALUES
+(1, 'Eminönü', 'Yeni öğrencilerle boğaz gezisi düzenlenecektir. Tüm üyelerimizi bekliyoruz.', 40, NULL, '', '2014-03-01 09:47:57', '09.03.2014'),
+(2, 'a', 'a', 0, NULL, 'a', '2014-03-01 09:48:41', 'a');
 
 -- --------------------------------------------------------
 
@@ -119,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `content` text NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='duyuru ve haberler için' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='duyuru ve haberler için' AUTO_INCREMENT=11 ;
 
 --
 -- Tablo döküm verisi `news`
@@ -127,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 
 INSERT INTO `news` (`id`, `title`, `summary`, `content`, `time`) VALUES
 (1, 'Sitenin yazılımı başladı', 'Web sitemizin web uygulamasına ait yazılım kodlamasına başlandı.', 'Web sitemiz için web uygulaması analizi uzun süredir devam etmekteydi.\r\nNihayet analizler tamamlandı. Analiz sonuçlarına göre web yazılımın geliştirilmesine başlandı.', '2014-02-23 10:37:55'),
-(2, 'sada', 'dsad', 'asd', '2014-02-23 12:14:19');
+(10, 'fotolu haber başlık', 'fotolu haber özet', 'fotolu haber içerik', '2014-03-01 11:16:00');
 
 -- --------------------------------------------------------
 
@@ -141,7 +149,16 @@ CREATE TABLE IF NOT EXISTS `news_photo` (
   `filename` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `news_id` (`news_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Tablo döküm verisi `news_photo`
+--
+
+INSERT INTO `news_photo` (`id`, `news_id`, `filename`) VALUES
+(4, 10, 'kulluckaweb.jpg'),
+(5, 10, 'nano2014(2).jpg'),
+(6, 10, 'websayfa.jpg');
 
 -- --------------------------------------------------------
 
