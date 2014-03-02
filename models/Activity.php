@@ -27,6 +27,21 @@ class Activity extends ModelBase{
         return $result;
     }
     
+    public function delete($id){
+        $sql = "SELECT photo FROM activity WHERE id=$id;";
+        $activity_photo = $this->db->get_var($sql);
+        
+        $sql = "DELETE FROM activity WHERE id=$id;";
+        $delete_result = $this->db->query($sql);
+        
+        //eğer delet işlemi başarılı ise ve fotoğraf varsa
+        if($delete_result == true && !is_null($activity_photo)){
+            unlink( BASE_PATH.'/files/activities/'.$activity_photo );
+        }
+
+        return $delete_result;
+    }
+    
     
     public function getActivities($number=NULL) {
         $limit = is_null($number) ?  NULL : " LIMIT 0, $number";

@@ -29,7 +29,22 @@ if ( $Admin->isLogined() == false ){
             <?php
             $ActivityList = $Activity->getActivities(10);
             ?>
-            
+            <div id="deleteResult">
+                <?php
+                if(isset($_GET['delete'])){
+                    switch ($_GET['delete']) {
+                        case 'ok':
+                            echo 'Delete operation successful.';
+                        break;
+                        case 'notok':
+                            echo 'Delete operation not successful.';
+                        break;
+                        default:
+                        break;
+                    }
+                }
+                ?>
+            </div>
             <table border="1" cellpadding="2">
                 <thead>
                     <tr>
@@ -59,7 +74,11 @@ if ( $Admin->isLogined() == false ){
                                 <td><?php echo $ActivityItem->activity_time; ?></td>
                                 <td><?php echo $ActivityItem->time; ?></td>
                                 
-                                <td>Delete | Detail</td>
+                                <td>
+                                    <a href="delete_activity.php?id=<?php echo $ActivityItem->id; ?>">
+                                    Delete
+                                    </a>
+                                    | Detail</td>
                             </tr>
                     <?php
                         }
