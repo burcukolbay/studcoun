@@ -29,7 +29,22 @@ if ( $Admin->isLogined() == false ){
             <?php
             $NewsList = $News->getNews(10);
             ?>
-            
+            <div id="deleteResult">
+                <?php
+                if(isset($_GET['delete'])){
+                    switch ($_GET['delete']) {
+                        case 'ok':
+                            echo 'Delete operation successful.';
+                        break;
+                        case 'notok':
+                            echo 'Delete operation not successful.';
+                        break;
+                        default:
+                        break;
+                    }
+                }
+                ?>
+            </div>
             <table border="1" cellpadding="2">
                 <thead>
                     <tr>
@@ -52,7 +67,12 @@ if ( $Admin->isLogined() == false ){
                                 <td></td>
                                 <td><?php echo $NewsItem->title; ?></td>
                                 <td><?php echo $NewsItem->time; ?></td>
-                                <td>Delete | Detail</td>
+                                <td>
+                                    <a href="delete_news.php?id=<?php echo $NewsItem->id; ?>">
+                                    Delete
+                                    </a>
+                                    
+                                    | Detail</td>
                             </tr>
                     <?php
                         }

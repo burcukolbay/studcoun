@@ -32,6 +32,23 @@ class News extends ModelBase{
         return $result;
     }
     
+    public function delete($id){
+        $sql = "SELECT * FROM news_photo WHERE news_id=$id;";
+        $news_photos = $this->db->get_results($sql);
+        
+        $sql = "DELETE FROM news WHERE id=$id;";
+        $delete_result = $this->db->query($sql);
+        
+        //eğer delet işlemi başarılı ise ve fotoğraf varsa
+        if($delete_result == true && !is_null($news_photos)){
+            foreach ($news_photos as $news_photo) {
+                unlink( BASE_PATH.'/files/news/'.$news_photo->filename );
+            }
+        }
+
+        return $delete_result;
+    }
+
     public function insertFile($news_id, $filename){
         $sql = 'INSERT INTO news_photo(news_id, filename)'
                 . "VALUES('$news_id', '$filename');";
