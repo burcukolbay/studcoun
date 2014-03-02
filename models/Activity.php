@@ -54,4 +54,11 @@ class Activity extends ModelBase{
         return $result;
     }
     
+    public function getActivityById($id){
+        $sql = "SELECT * FROM activity WHERE id=$id";
+        $result = $this->db->get_row($sql);
+        
+        return $result;
+    }
+    
 }

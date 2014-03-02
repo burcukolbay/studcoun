@@ -20,7 +20,7 @@ class News extends ModelBase{
             for( $i=1; $i <= $fileCount; $i++ ){
                 if( !empty($_FILES['image'.$i]['name']) ){
                     $filename = $_FILES['image'.$i]['name'];
-
+                    
                     $copy_result = move_uploaded_file($_FILES['image'.$i]['tmp_name'], BASE_PATH.'/files/news/'.$filename);
                     if( $copy_result == true ){
                         $this->insertFile($news_id, $filename);

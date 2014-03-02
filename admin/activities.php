@@ -78,7 +78,11 @@ if ( $Admin->isLogined() == false ){
                                     <a href="delete_activity.php?id=<?php echo $ActivityItem->id; ?>">
                                     Delete
                                     </a>
-                                    | Detail</td>
+                                    | 
+                                    <a href="activity_detail.php?id=<?php echo $ActivityItem->id; ?>">
+                                    Detail
+                                    </a>
+                                    </td>
                             </tr>
                     <?php
                         }

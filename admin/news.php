@@ -58,7 +58,7 @@ if ( $Admin->isLogined() == false ){
                 <tbody>
                     <?php
                     if (is_null($NewsList) ){
-                        echo '<tr><td cols="5">No record.</td></tr>';
+                        echo '<tr><td colspan="5">No record.</td></tr>';
                     }else{
                         foreach ($NewsList as $NewsItem) {
                     ?>
