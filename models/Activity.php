@@ -20,8 +20,8 @@ class Activity extends ModelBase{
         }
         
         
-        $sql = 'INSERT INTO activity(title, content, quota, photo, place, time, activity_time)'
-                . "VALUES('$title', '$content', '$quota', '$filename', '$place', '$time', '$activity_time');";
+        $sql = 'INSERT INTO activity(title, content, quota, photo, place, time)'
+                . "VALUES('$title', '$content', '$quota', '$filename', '$place', '$time');";
         
         $result = $this->db->query( $sql );
         return $result;
@@ -29,10 +29,10 @@ class Activity extends ModelBase{
     
     public function delete($id){
         $sql = "SELECT photo FROM activity WHERE id=$id;";
-        $activity_photo = $this->db->get_var($sql);
+        $activity_photo = parent::$db->get_var($sql);
         
         $sql = "DELETE FROM activity WHERE id=$id;";
-        $delete_result = $this->db->query($sql);
+        $delete_result = ModelBase::$db->query($sql);
         
         //eğer delet işlemi başarılı ise ve fotoğraf varsa
         if($delete_result == true && !is_null($activity_photo)){
@@ -50,7 +50,7 @@ class Activity extends ModelBase{
         $sql .= ' ORDER BY time DESC';
         $sql .= is_null($limit) ? '' : $limit;
        
-        $result = $this->db->get_results( $sql );
+        $result = self::$db->get_results( $sql );
         return $result;
     }
     

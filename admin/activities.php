@@ -71,7 +71,6 @@ if ( $Admin->isLogined() == false ){
                                 <td><?php echo $ActivityItem->title; ?></td>
                                 <td><?php echo $ActivityItem->place; ?></td>
                                 <td><?php echo $ActivityItem->quota; ?></td>
-                                <td><?php echo $ActivityItem->activity_time; ?></td>
                                 <td><?php echo $ActivityItem->time; ?></td>
                                 
                                 <td>

@@ -1,4 +1,10 @@
 <?php
+//php.exe yorumlayıcısına tüm hataları göster komutu veriyoruz
+error_reporting(E_ALL);
+//php.exe yorumlayısına hataları gösterme ayarı olarak on komutunu veriyoruz
+ini_set('display_errors', 'On');
+
+
 //@todo yayına girerken değiştirilecek ve test edilecek
 //URL sabitleri
 define('BASE_URL', 'http://localhost/studcoun');
