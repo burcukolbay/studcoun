@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once '../config/main.php';
 
 include_once  BASE_PATH . '/models/Admin.php';

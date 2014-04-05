@@ -10,12 +10,12 @@ class News extends ModelBase{
         $sql = 'INSERT INTO news(title,summary,content,time)'
                 . "VALUES('$title', '$summary', '$content', '$time');";
         
-        $result = $this->db->query( $sql );
+        $result = self::$db->query( $sql );
         
         //haber kaydı başarılı ise
         if( $result == true ){
             $fileCount = 3;
-            $news_id = $this->db->insert_id;
+            $news_id = self::$db->insert_id;
             
             for( $i=1; $i <= $fileCount; $i++ ){
                 if( !empty($_FILES['image'.$i]['name']) ){
@@ -34,10 +34,10 @@ class News extends ModelBase{
     
     public function delete($id){
         $sql = "SELECT * FROM news_photo WHERE news_id=$id;";
-        $news_photos = $this->db->get_results($sql);
+        $news_photos = self::$db->get_results($sql);
         
         $sql = "DELETE FROM news WHERE id=$id;";
-        $delete_result = $this->db->query($sql);
+        $delete_result = self::$db->query($sql);
         
         //eğer delet işlemi başarılı ise ve fotoğraf varsa
         if($delete_result == true && !is_null($news_photos)){
@@ -53,7 +53,7 @@ class News extends ModelBase{
         $sql = 'INSERT INTO news_photo(news_id, filename)'
                 . "VALUES('$news_id', '$filename');";
         
-        $result = $this->db->query( $sql );
+        $result = self::$db->query( $sql );
         
         return $result;
     }
@@ -65,7 +65,7 @@ class News extends ModelBase{
         $sql .= ' ORDER BY time DESC';
         $sql .= is_null($limit) ? '' : $limit;
        
-        $result = $this->db->get_results( $sql );
+        $result = self::$db->get_results( $sql );
         return $result;
     }
     

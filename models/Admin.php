@@ -14,13 +14,18 @@ class Admin extends ModelBase{
     
     public $email, $password;
     
+    public function __construct() {
+        parent::__construct();
+        session_start();
+    }
+
     public function login($email,$password) {        
         $sql = 'SELECT * '
                 . "FROM admin "
                 . "WHERE email='$email'";
 
         //veritabanında $sql değişkeni içindeki sorgu çalıştırıldı
-        $queryResult = $this->db->get_row( $sql );
+        $queryResult =   self::$db->get_row( $sql );
         //email var mı?
         if ( is_null($queryResult) ){
             return array(false, 'Email is wrong!');
@@ -28,7 +33,7 @@ class Admin extends ModelBase{
         
         $sql = ' SELECT * FROM admin'
                 . " WHERE email='$email' AND password='$password'";
-        $queryResult = $this->db->get_row( $sql );
+        $queryResult = self::$db->get_row( $sql );
         //bir önceki sqlde yer alan şifre doğru mu?
         if ( is_null($queryResult) ){
             return array(false, 'Password is wrong!');

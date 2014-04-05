@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once '../config/main.php';
 $errorMessage = NULL;
 if ( isset($_POST['btnLogin']) ){//form gonderilmişse
